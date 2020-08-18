@@ -12,41 +12,8 @@ const { remote } = require('electron')
 var window = remote.getCurrentWindow()
 
 export default class AppBar extends React.Component{
-    constructor(props){
-        super(props)
-
-        this.state = {
-            maximizeIcon: <CropSquare/>,
-            mainApp: props.mainApp
-        }
-    }
-
-    // Evento de click no botao [Maximize]
-    maximizeButton = () => {
-        if ( window.isMaximized() )
-            window.restore()
-        else
-            window.maximize()
-    }
-
-    componentDidMount = () => {
-        // Evento de resize da janela principal
-        // Controlo aqui a troca do icone [Maximize]
-        window.addListener("resize", () => {
-            if ( window.isMaximized() )
-                this.setState({ maximizeIcon: <FilterNone/> })
-            else
-                this.setState({ maximizeIcon: <CropSquare/> })
-        })
-    }
-    
     render(){
-        const {
-            open,
-            anchorEl = null,
-        } = this.state;
-      
-        // Styles
+
         const appBarStyle = {
             WebkitAppRegion: "drag",
             zIndex: 1000,
@@ -73,17 +40,7 @@ export default class AppBar extends React.Component{
 
         return ( 
             <div style={ appBarStyle }>                
-                <AppMenu mainApp={this.state.mainApp}/>
                 <h1 style={ appH1 }>Reactron</h1>
-
-                <IconButton color="inherit" size="small" style={ appButton  }
-                    onClick={() => { window.minimize() } }>
-                    <Minimize />
-                </IconButton>
-                <IconButton color="inherit" size="small" style={ appButton }
-                    onClick={() => { this.maximizeButton() } }>
-                    { this.state.maximizeIcon }
-                </IconButton>
                 <IconButton color="inherit" size="small" style={ appButton }
                     onClick={() => { window.close() } }>
                     <Close />

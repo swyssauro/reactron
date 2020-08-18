@@ -1,15 +1,7 @@
 {
   "name": "reactron",
-  "displayName": "Projeto base para uma aplicacao React/Electron/Material",
-  "description": "Projeto base para uma aplicacao React/Electron/Material",
   "version": "1.0.0",
   "license": "MIT",
-  "repository": "https://github.com/ricardomansano/reactron",
-  "publisher": "Mansano",
-  "author": {
-    "name": "Ricardo Mansano",
-    "email": "ricardomansano@live.com"
-  },
   "main": "app/main.js",
   "scripts": {
     "postinstall": "install-app-deps",

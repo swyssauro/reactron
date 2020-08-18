@@ -5,12 +5,6 @@ import url from 'url';
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
-
-// *Funcoes devem ser exportadas pra serem acessiveis ao front-end
-// Executa comando do SO e retorna resultado ao front-end
-// Outro processo é o IPCMaine IPCRenderer
-// https://electronjs.org/docs/api/ipc-main
-// https://electronjs.org/docs/api/ipc-renderer
 exports.execProcess = (process, callback) => {
   const { exec } = require('child_process');
   const callExec = exec(process)
@@ -27,18 +21,13 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    
-    // Caracteristicas visuais da janela
-    // autoHideMenuBar: true,
-    // titleBarStyle: 'customButtonsOnHover',
-    frame: false, // Retira barra superior
-    useContentSize: false, // Inibe mostragem de dimensao da janela
-
+    transparent: true,
+    frame: false, 
+    useContentSize: false,
     webPreferences: {
       nodeIntegration: true
     }
   });
-  //mainWindow.removeMenu();
 
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
